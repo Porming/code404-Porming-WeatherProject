@@ -73,6 +73,21 @@ h1 {
   /* background-color: white; */
 }
 
+.loading-screen {
+  display: flex;
+  justify-content: center;
+  
+}
+
+.loading-screen > img{
+  height: 128px;
+  width: 128px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /* <========== temp detail ==========> */
 .temp-detail {
   /* background-color: lightblue; */
@@ -112,6 +127,7 @@ h1 {
   justify-content: center;
   align-items: center;
   width: 33.33%;
+  margin-top: 10px;
 }
 
 .icon-large {
@@ -175,7 +191,7 @@ h1 {
 }
 
 .card-temp {
-  width: 16.6%;
+  width: 25%;
   height: 200px;
   /* background-color: white; */
   display: flex;
