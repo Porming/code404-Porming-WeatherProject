@@ -17,7 +17,6 @@ import snow_13n from '../images/snow_13n.svg';
 import mist_50d from '../images/mist_50d.svg';
 import mist_50n from '../images/mist_50n.svg';
 
-
 const weatherIcons = {
     '01d': clear_sky_01d,
     '01n': clear_sky_01n,
@@ -39,39 +38,21 @@ const weatherIcons = {
     '50n': mist_50n,
 };
 
-export default function WeatherTemp({city, weather, tempareture, humidity, wind, min_temp, max_temp, icon}) {
-    let today = new Date();
-    let todayFormatted = today.toLocaleString('en-US', {weekday: 'long'});
-
+export default function ForecastWeather({ day, tempareture, weather, icon }) {
     return (
         <>
-            <section className='temp-detail'>
-                <div className='show-day'>
-                    <p className='day'>{todayFormatted}</p>
-                    <p className='location'>Today in <span className='city'>{city} </span></p>
+            <div className='card-temp'>
+                <div className='card-title'>
+                    <p>{day}</p>
                 </div>
-
-                <div className='weather-icon-large'>
-                    <img className='icon-large' src={weatherIcons[icon]} alt={weather} />
+                <div className='icon-small'>
+                    <img src={weatherIcons[icon]} alt="" />
                     <p>{weather}</p>
                 </div>
-
-                <div className='show-temp-detail'>
-                    <div className='show-temp'>
-                        <p className='tempareture'>{tempareture}°</p>
-                    </div>
-                    <div className='data-temp'>
-                        <div className='side-data-temp'>
-                            <p>Humidity <span className='humidity'>{humidity}%</span></p>
-                            <p>wind <span className='wind'> {wind}km/h</span></p>
-                        </div>
-                        <div className='side-data-temp'>
-                            <p>Min temp <span className='min-temp'>{min_temp}°</span></p>
-                            <p>Max temp <span className='max-temp'>{max_temp}°</span></p>
-                        </div>
-                    </div>
+                <div className='temp'>
+                    <p>{tempareture}°</p>
                 </div>
-            </section>
+            </div>
         </>
     )
 }
