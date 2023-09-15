@@ -1,4 +1,6 @@
 # [Demo App](https://weather-app-lilac-omega.vercel.app/)
+I choose **Vercel** hosting platform to host this project.
+
 # Weather App
 This Weather App, It display the weather of the current location depends on user's location by fetch the current geolocation than request the data from OpenWeatherMap API.
 
@@ -56,13 +58,17 @@ I used the Git Flow method for Todo List app project. This method helped me to m
 ### 1. Set Up My Development Environment
 * I use React vite library for this project
 
-### 2. API Key
+### 2. API 
 * I use an API key to fetch weather data from weather API service **OpenWeatherMap**
+* API Endpoint:
+    * Current Weather Data API
+    * 5 Day / 3 Hour Forecast
 
 ### 3. Components
 * React components for this application
     * `WeatherTemp.jsx` : to display the current weather of user's location
     * `ForecastTemp.jsx` : to display the forecast weather of user's location
+    * `Weathericon.jsx` : to store the icon for display 
 
 ### 4. Fetch Data
 * I use JavaScript Geolocation API provides access to geographical location data associated with a user's device. [Reference](https://www.educative.io/answers/how-to-use-geolocation-call-in-reactjs)
@@ -77,9 +83,6 @@ I used the Git Flow method for Todo List app project. This method helped me to m
 * Forecast weather data
     * First, I fetch data from **(5 Day / 3 Hour Forecast)** provide by **OpenWeatherMap** in `App.jsx` file, I create a list to store the data of next 4 days by using for loop to take datas(temperature, weather description, icon) from the list of API data from index[8], index[16], index[24], and index[32] . After that I set that list to `forecastdata state`. I map the state, create prop pass to `ForecastTemp.jsx` component.
     * In `ForecastTemp.jsx`, I take all the prop that pass from `App.jsx` and display it out 
-
-### 6. Deployment
-* I choose **Vercel** hosting platform to host this project.
 
 ### 7. Maintenance
 * I use version control(git) to keep track of changes.
