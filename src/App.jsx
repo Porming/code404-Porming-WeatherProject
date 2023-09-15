@@ -66,6 +66,7 @@ function App() {
             <div className='content'>
               {temp.map((data) => {
                 return <WeatherTemp
+                  key={Math.random()*10**3}
                   city={data.name}
                   weather={data.weather[0].description}
                   tempareture={Math.floor(data.main.temp)}
@@ -81,6 +82,7 @@ function App() {
                 <div className='show-week-temp'>
                   {forecastData.map((data) => {
                     return <ForecastWeather
+                      key={Math.random()*10**3}
                       day={new Date(data.day).toLocaleString('en-US', { weekday: 'long' })}
                       tempareture={Math.floor(data.temp)}
                       weather={data.weather}
