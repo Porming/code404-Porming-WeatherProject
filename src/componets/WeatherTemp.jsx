@@ -1,25 +1,7 @@
 import React from 'react';
-import few_cloud from '../images/few_cloud.svg';
-import clear_sky from '../images/clear_sky.svg';
-import cloud from '../images/cloud.svg';
-import rain from '../images/rain.svg';
-import snow from '../images/snow.svg';
-import wind from '../images/wind.svg';
-import thunderstorm from '../images/thunderstorm.svg'
-import broken_cloud from '../images/broken_cloud.svg';
+import {weatherIcons} from './WeatherIcon';
 
-const weatherIcons = {
-    'Clouds': few_cloud,
-    'Clear': clear_sky,
-    'Scattered Clouds': cloud,
-    'Rain': rain,
-    'Snow': snow,
-    'Mist': wind,
-    'Thunderstorm': thunderstorm,
-    'Drizzle': broken_cloud,
-};
-
-export default function WeatherTemp({city, weather, tempareture, humidity, wind, min_temp, max_temp}) {
+export default function WeatherTemp({city, weather, tempareture, humidity, wind, min_temp, max_temp, icon}) {
     let today = new Date();
     let todayFormatted = today.toLocaleString('en-US', {weekday: 'long'});
 
@@ -32,7 +14,7 @@ export default function WeatherTemp({city, weather, tempareture, humidity, wind,
                 </div>
 
                 <div className='weather-icon-large'>
-                    <img className='icon-large' src={weatherIcons[weather]} alt={weather} />
+                    <img className='icon-large' src={weatherIcons[icon]} alt={weather} />
                     <p>{weather}</p>
                 </div>
 

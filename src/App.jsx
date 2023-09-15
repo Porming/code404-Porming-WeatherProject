@@ -1,14 +1,14 @@
 import './App.css'
 import { useState, useEffect } from 'react';
 import WeatherTemp from './componets/Weathertemp';
-import few_cloud from './images/few_cloud.svg';
-import search from './images/search.svg';
+import ForecastWeather from './componets/ForecastWeather';
 import loading from './images/loading.gif';
 
 function App() {
   const [location, setLocation] = useState({});
   const [temp, setTemp] = useState([]);
   const [city, setCity] = useState('')
+  const [forecastData, setForecastData] = useState([]);
 
   useEffect(() => {
     getLocation();
@@ -17,6 +17,7 @@ function App() {
   useEffect(() => {
     if (location.latitude && location.longitude) {
       getWeatherDatas();
+      getForecastDatas();
     }
   }, [location])
 
@@ -39,51 +40,55 @@ function App() {
     setTemp([weatherData])
   };
 
+  const getForecastDatas = async () => {
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${location.latitude}&lon=${location.longitude}&units=Metric&appid=0d9feb068d8c074ba5949982c8f24443`);
+    const data = await response.json();
+    const forecastEachDay = []
+    for (let i = 1; i < 5; i++) {
+      const day = { 'day': data.list[8 * i].dt_txt, 'temp': data.list[8 * i].main.temp, 'weather': data.list[8 * i].weather[0].description, 'icon': data.list[8 * i].weather[0].icon }
+      forecastEachDay.push(day)
+    }
+    setForecastData(forecastEachDay);
+  };
+
 
   return (
     <>
-      {!city ? <div className='loading-screen'><img src={loading} alt="loading screen" /></div> :
+      {!city ? <div className='loading-screen'>
+        <img src={loading} alt="loading screen" />
+        <p>Loading Data...</p>
+        </div> :
         <div className='layout'>
           <header>
-            <h1>WEATHER</h1>
+            <h1>WEATHER APP</h1>
           </header>
-          <div className="inputbox">
-            <input type="text" className='input' placeholder='Search' />
-            <div className='search-icon'>
-              <img src={search} alt="" />
-            </div>
-          </div>
           <section className='container'>
             <div className='content'>
               {temp.map((data) => {
                 return <WeatherTemp
+                  key={Math.random()*10**3}
                   city={data.name}
-                  weather={data.weather[0].main}
+                  weather={data.weather[0].description}
                   tempareture={Math.floor(data.main.temp)}
                   humidity={Math.floor(data.main.humidity)}
                   wind={data.wind.speed}
                   min_temp={Math.floor(data.main.temp_min)}
                   max_temp={Math.floor(data.main.temp_max)}
+                  icon={data.weather[0].icon}
                 />
               })}
               <p className='week-text'>Next 4 Days</p>
               <section className='week-temp'>
                 <div className='show-week-temp'>
-
-                  <div className='card-temp'>
-                    <div className='card-title'>
-                      <p>Monday</p>
-                    </div>
-                    <div className='icon-small'>
-                      <img src={few_cloud} alt="" />
-                      <p>Few cloud</p>
-                    </div>
-                    <div className='temp'>
-                      <p>33°</p>
-                    </div>
-                  </div>
-
-
+                  {forecastData.map((data) => {
+                    return <ForecastWeather
+                      key={Math.random()*10**3}
+                      day={new Date(data.day).toLocaleString('en-US', { weekday: 'long' })}
+                      tempareture={Math.floor(data.temp)}
+                      weather={data.weather}
+                      icon={data.icon}
+                    />
+                  })}
                 </div>
               </section>
             </div>
