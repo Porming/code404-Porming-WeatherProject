@@ -84,5 +84,5 @@ I used the Git Flow method for Todo List app project. This method helped me to m
     * First, I fetch data from **(5 Day / 3 Hour Forecast)** provide by **OpenWeatherMap** in `App.jsx` file, I create a list to store the data of next 4 days by using for loop to take datas(temperature, weather description, icon) from the list of API data from index[8], index[16], index[24], and index[32] . After that I set that list to `forecastdata state`. I map the state, create prop pass to `ForecastTemp.jsx` component.
     * In `ForecastTemp.jsx`, I take all the prop that pass from `App.jsx` and display it out 
 
-### 7. Maintenance
+### 6. Maintenance
 * I use version control(git) to keep track of changes.
