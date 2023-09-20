@@ -1,5 +1,5 @@
 import React from 'react';
-import {weatherIcons} from './WeatherIcon';
+import { weatherIcons } from '../App';
 
 export default function WeatherTemp({city, weather, tempareture, humidity, wind, min_temp, max_temp, icon}) {
     let today = new Date();
