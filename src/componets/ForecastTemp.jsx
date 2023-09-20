@@ -1,5 +1,5 @@
 import React from 'react';
-import {weatherIcons} from './WeatherIcon'
+import { weatherIcons } from '../App';
 
 export default function ForecastWeather({ day, tempareture, weather, icon }) {
     return (
